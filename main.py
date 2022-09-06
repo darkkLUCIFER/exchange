@@ -1,3 +1,5 @@
+from fileinput import filename
+
 import requests
 import json
 from config import url, API_KEY
@@ -10,5 +12,11 @@ def get_rates():
     return None
 
 
+def archive(file_name, rates):
+    with open(f'archive/{file_name}.json', 'w') as f:
+        f.write(json.dumps(rates))
+
+
 if __name__ == '__main__':
-    print(get_rates())
+    data = get_rates()
+    archive(data['timestamp'], data['rates'])
