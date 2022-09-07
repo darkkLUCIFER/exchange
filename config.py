@@ -3,14 +3,12 @@ url = 'https://api.apilayer.com/fixer/latest?base=USD&symbols=EUR,GBP,TWD,IRR'
 
 API_KEY = 'dwUhVbLZ8xO51usToTqYFfEhLxHkVwcV'
 
-EMAIL_RECEIVER = 'mdn1376@gmail.com'
-
 # change rules for your purposes
 rules = {
     'archive': True,
-    'send_mail': True,
-
-    # default selected_rates in None
-    # 'selected_rates': None,
-    'selected_rates': ['EUR', 'IRR'],
+    'email': {
+        'enable': True,
+        'receiver': 'mdn1376@gmail.com',
+        'selected_rates': ['EUR', 'IRR']
+    },
 }

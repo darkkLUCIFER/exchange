@@ -1,6 +1,6 @@
 import smtplib
 
-from config import EMAIL_RECEIVER
+from config import rules
 from local_config import MAILGUN_APIKEY
 # make local_config.py in your project and add your MAILGUN_APIKEY to that
 
@@ -12,7 +12,7 @@ def send_smtp_email(subject, body):
     msg = MIMEText('Testing some Mailgun awesomness')
     msg['Subject'] = "Hello"
     msg['From'] = "foo@YOUR_DOMAIN_NAME"
-    msg['To'] = EMAIL_RECEIVER
+    msg['To'] = rules['email']['receiver']
 
     with smtplib.SMTP('smtp.mailgun.org', 587) as mail_server:
         mail_server.login('postmaster@YOUR_DOMAIN_NAME', MAILGUN_APIKEY)

@@ -35,9 +35,9 @@ def send_mail(timestamp, rates):
     """
     subject = f'{timestamp} rates'
 
-    if rules['selected_rates'] is not None:
+    if rules['email']['selected_rates'] is not None:
         tmp = dict()
-        for exc in rules['selected_rates']:
+        for exc in rules['email']['selected_rates']:
             tmp[exc] = rates[exc]
         rates = tmp
 
@@ -52,5 +52,5 @@ if __name__ == '__main__':
     # if you want to customize, got to config.py
     if rules['archive']:
         archive(data['timestamp'], data['rates'])
-    if rules['send_mail']:
+    if rules['email']['enable']:
         send_mail(data['timestamp'], data['rates'])
