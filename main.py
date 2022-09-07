@@ -1,5 +1,3 @@
-from fileinput import filename
-
 import requests
 import json
 from config import url, API_KEY
