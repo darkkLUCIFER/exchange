@@ -1,5 +1,10 @@
+from datetime import datetime
+
 import requests
 import json
+
+from khayyam import JalaliDatetime
+
 from config import url, API_KEY, rules
 from mail import send_smtp_email
 from notification import send_sms
@@ -34,7 +39,8 @@ def send_mail(timestamp, rates):
     :param rates:
     :return: None
     """
-    subject = f'{timestamp} rates'
+    now = JalaliDatetime(datetime.now()).strftime("%Y-%B-%d %A %H:%M")
+    subject = f'{timestamp} - {now} - rates'
 
     if rules['email']['selected_rates'] is not None:
         tmp = dict()
@@ -64,6 +70,8 @@ def check_notify_rules(rates):
 
 
 def send_notification(msg):
+    now = JalaliDatetime(datetime.now()).strftime("%Y-%B-%d %A %H:%M")
+    msg += now
     send_sms(msg)
 
 
